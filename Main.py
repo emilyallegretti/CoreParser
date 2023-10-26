@@ -1,16 +1,14 @@
+from Program import Program
 from Scanner import Scanner
-
-# global variable for a Scanner instance, which will tokenize the input program and allow the parser to iterate through tokens.
-t=None
 
 # Main driver method that will trigger the recursive descent parser, printer, and executor.
 def main(args):
-    # instantiate t
-    t=Scanner(args[1])      # first CL arg is the name of the input file
+    # create a Scanner instance that will tokenize the input program and allow the parser to access tokens
+    tokens=Scanner(args[1])      # first CL arg is the name of the input file
     # create root node of abstract parse tree corresponding to input program
     prog = Program()
     # first parse the input program
-    prog.parseProgram()
+    prog.parseProgram(tokens)
     # then pretty-print it
     prog.printProgram()
     # finally, execute the program using the second CL arg, which is the data file
