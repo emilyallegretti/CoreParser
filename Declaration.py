@@ -1,17 +1,42 @@
 # Class corresponding to a Declaration node in the abstract syntax tree.
-class Declaration: 
-    def __init__():
-        None
+from Error import printError
+from IdList import IdList
+from Token import Token
+
+
+class Declaration:
+    # initialize a static list of variables declared by the program 
+    declaredVars = []
+
+    def __init__(self):
+        # initialize child of Declaration node
+        self._idList = None
+       
+
     
     # Parse this Declaration statement according to the BNF production.
-    def parseDeclaration():
-        None
+    def parseDeclaration(self, tokens):
+        # make sure current token is int keyword
+        if tokens.getToken() == Token.INT:
+            tokens.skipToken()
+            self._idList = IdList()
+            self._idList.parseIdList()
+            if tokens.getToken()==Token.SEMICOLON:
+                tokens.skipToken()
+                return
+        printError("declaration")
+        exit(1)
     
     # Print this Declaration statement according to the BNF production.
-    def printDeclaration():
-        None
+    def printDeclaration(self):
+        print("int ", end="")
+        self._idList.printIdList()
+        print(";")
     
-    # Execute this Declaration statement.
-    def evalDeclaration():
-        None
+    # Execute this Declaration statement by adding each variable in the idList to a static list of declared variables, which will be used
+    # by the parser to check if future Id instances were declared by the program
+    def execDeclaration(self):
+         vars = self._idList.evalIdList()
+         for v in vars:
+            Declaration.declaredVars.append[v]
         

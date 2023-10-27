@@ -1,6 +1,7 @@
 
 # Class corresponding to an If node in the abstract syntax tree.
 from Condition import Condition
+from Error import printError
 from StatementSequence import StatementSequence
 from Token import Token
 class If: 
@@ -46,15 +47,15 @@ class If:
                             self._altNo = 2     # store alternator number
                             tokens.skipToken()      # move cursor beyond end of statement
                             return
-        print("Syntax error in IF statement. Aborting program...")
+        printError("if")
         exit(1)
 
     
     # Pretty-print this If statement according to the BNF production.
     def printIf(self):
-        print("if ")
+        print("if ", end='')
         self._cond.printCondition()
-        print('then\n\t')
+        print('then\n\t',end='')
         self._ss1.printStatementSequence()
         print("end;\n")
     

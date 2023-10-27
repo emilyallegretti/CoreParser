@@ -4,6 +4,7 @@ class Id:
         None
     
     # Parse this Id statement according to the BNF production.
+    @staticmethod
     def parseId():
         None
     
