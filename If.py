@@ -1,7 +1,7 @@
 
 # Class corresponding to an If node in the abstract syntax tree.
 from Condition import Condition
-from Error import printError
+from Error import printSyntaxError
 from StatementSequence import StatementSequence
 from Token import Token
 class If: 
@@ -47,7 +47,7 @@ class If:
                             self._altNo = 2     # store alternator number
                             tokens.skipToken()      # move cursor beyond end of statement
                             return
-        printError("if")
+        printSyntaxError("if")
         exit(1)
 
     

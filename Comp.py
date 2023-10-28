@@ -1,4 +1,4 @@
-from Error import printError
+from Error import printSyntaxError
 # Class corresponding to a Comp node in the abstract syntax tree.
 from CompOp import CompOp
 from Op import Op
@@ -31,7 +31,7 @@ class Comp:
                 tokens.skipToken()      # move cursor beyond end of statement
                 return
         # if we reach this point in the code, we have a syntax error
-        printError("comparison")
+        printSyntaxError("comparison")
         exit(1)
 
     

@@ -1,6 +1,6 @@
 # Class corresponding to a Condition node in the abstract syntax tree.
 from Comp import Comp
-from Error import printError
+from Error import printSyntaxError
 from Scanner import Scanner
 from Condition import Condition
 from Token import Token
@@ -49,7 +49,7 @@ class Condition:
                     self._altNo = 4
                     tokens.skipToken()
                     return
-        printError("condition")
+        printSyntaxError("condition")
         exit(1)
 
 

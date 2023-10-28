@@ -1,5 +1,5 @@
 # Class corresponding to a CompOp node in the abstract syntax tree.
-from Error import printError
+from Error import printSyntaxError
 
 
 class CompOp: 
@@ -24,7 +24,7 @@ class CompOp:
             self._symbol = ">="
         else:
             # if the current token is not one of the terminal production rules for CompOp, print error message and exit
-            printError('comparison operator')
+            printSyntaxError('comparison operator')
             exit(1)
 
         

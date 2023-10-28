@@ -1,5 +1,5 @@
 # Class corresponding to a Assign node in the abstract syntax tree.
-from Error import printError
+from Error import printSyntaxError
 from Expression import Expression
 from Id import Id
 from Scanner import Scanner
@@ -24,7 +24,7 @@ class Assign:
             # check if last token is ;
             if tokens.getToken() == Token.SEMICOLON:
                 return
-        printError('assignment')
+        printSyntaxError('assignment')
         exit(1)
 
 

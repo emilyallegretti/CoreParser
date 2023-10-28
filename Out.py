@@ -1,17 +1,39 @@
 # Class corresponding to a Out node in the abstract syntax tree.
+from Declaration import Declaration
+from Error import printRuntimeError, printSyntaxError
+from IdList import IdList
+from Scanner import Scanner
+from Token import Token
+
+
 class Out: 
-    def __init__():
-        None
+    def __init__(self):
+        # initialize child of Out
+        self._idList = None
     
     # Parse this Out statement according to the BNF production.
-    def parseOut():
-        None
+    def parseOut(self, tokens:Scanner):
+        # make sure first token is write keyword
+        if tokens.getToken() == Token.WRITE:
+            tokens.skipToken()
+            self._idList = IdList()
+            self._idList.parseIdList(tokens)
+            return
+        printSyntaxError('write')
+        exit(1)
+
+
     
     # Print this Out statement according to the BNF production.
-    def printOut():
-        None
+    def printOut(self):
+        print("write ", end="")
+        self._idList.printIdList()
+
     
     # Execute this Out statement.
-    def evalOut():
-        None
-        
+    def execOut(self):
+        # get the list of Id strings in idList and print each one out
+        # if the variable has not been initialized, print an error and quit 
+        vars = self._idList.evalIdList()
+        for var in vars:
+            print(var.evalId())

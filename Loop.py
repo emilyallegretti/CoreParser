@@ -1,6 +1,6 @@
 # Class corresponding to a Loop node in the abstract syntax tree.
 from Condition import Condition
-from Error import printError
+from Error import printSyntaxError
 from Scanner import Scanner
 from StatementSequence import StatementSequence
 from Token import Token
@@ -31,7 +31,7 @@ class Loop:
                         tokens.skipToken()      # move cursor beyond end of statement
                         return
 
-        printError('loop')
+        printSyntaxError('loop')
         exit(1)
 
     

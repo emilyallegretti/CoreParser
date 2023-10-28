@@ -1,6 +1,6 @@
 # Class corresponding to a DeclarationSequence node in the abstract syntax tree.
 from Declaration import Declaration
-from Error import printError
+from Error import printSyntaxError
 from Scanner import Scanner
 from Token import Token
 
@@ -19,8 +19,7 @@ class DeclarationSequence:
         if tokens.getToken() == Token.INT:
             self._declSeq = DeclarationSequence()
             self._declSeq.parseDeclarationSequence(tokens)
-            return
-        printError("declaration sequence")
+
     
     # Print this DeclarationSequence statement according to the BNF production.
     def printDeclarationSequence(self):
