@@ -13,11 +13,11 @@ class Fac:
     # Parse this Fac statement according to the BNF production.
     def parseFac(self, tokens:Scanner):
         self._op = Op()
-        self._op.parseOp()
-        if tokens.getToken == Token.ASTERISK:
+        self._op.parseOp(tokens)
+        if tokens.getToken == Token.ASTERISK.value:
             tokens.skipToken()
             self._fac = Fac()
-            self._fac.parseFac()
+            self._fac.parseFac(tokens)
     
     # Print this Fac statement according to the BNF production.
     def printFac(self):

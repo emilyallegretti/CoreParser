@@ -17,7 +17,7 @@ class Id:
     @staticmethod
     def parseId(tokens: Scanner):
         # make sure current token is an Id, else we have a syntax error
-        if tokens.getToken() == Token.ID:
+        if tokens.getToken() == Token.ID.value:
             tokName = tokens.idName()
             if Id.isDeclared(tokName):
                 for id in Id.declaredVars:
@@ -36,7 +36,7 @@ class Id:
     @staticmethod
     def declare(tokens:Scanner):
         # make sure current token is an Id token
-        if tokens.getToken() == Token.ID:
+        if tokens.getToken() == Token.ID.value:
             # get the name of the Id token
             tokName = tokens.idName()
             # check if Id name is already declared. if not, create new Id and add it to declaredVars
@@ -56,7 +56,7 @@ class Id:
     
     # Print this Id statement according to the BNF production.
     def printId(self):
-        print(self.name)
+        print(self.name, end="")
     
     # Evaluate this Id statement by returning the value assigned to it. If it is uninitialized, print an error message and abort
     def evalId(self):
@@ -74,6 +74,6 @@ class Id:
     def isDeclared(idName: str):
         # check if one of the Ids in declaredVars already has that name, if so print error and exit
         for id in Id.declaredVars:
-            if id.name() == idName:
+            if id.name == idName:
                 return True
         return False

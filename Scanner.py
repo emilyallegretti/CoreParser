@@ -462,7 +462,7 @@ class Scanner:
        if self.getToken() == 31:
           # get token from actual_values and check if it has leading zeros, truncating them as necessary
           intToken = self.actual_values[self._cursor]
-          while (intToken[0]=='0'):
+          while (intToken != "0" and intToken[0]=='0'):
              intToken = intToken[1:] 
           return int(intToken)
        else:

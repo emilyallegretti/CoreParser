@@ -15,15 +15,15 @@ class Expression:
     def parseExpression(self, tokens: Scanner):
         # in either alternative, <fac> is the first token to be parsed
         self._fac = Fac()
-        self._fac.parseFac()
+        self._fac.parseFac(tokens)
         self._altNo = 1
         # if next token is a + or - token, we are in second/third alternative
-        if tokens.getToken() == Token.PLUS:
+        if tokens.getToken() == Token.PLUS.value:
             self._altNo = 2
             tokens.skipToken()
             self._exp = Expression()
             self._exp.parseExpression(tokens)
-        elif tokens.getToken() == Token.MINUS:
+        elif tokens.getToken() == Token.MINUS.value:
             self._altNo = 3 
             tokens.skipToken()
             self._exp = Expression()
@@ -35,9 +35,9 @@ class Expression:
         self._fac.printFac()
         if self._altNo > 1:
             if self._altNo == 2:
-                print(" + ")
+                print(" + ",end="")
             elif self._altNo == 3:
-                print(" - ")
+                print(" - ", end="")
             self._exp.printExpression()
 
     

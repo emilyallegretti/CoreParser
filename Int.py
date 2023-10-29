@@ -11,7 +11,8 @@ class Int:
     # Parse this Int statement by .
     def parseInt(self, tokens: Scanner):
         # make sure current token is an int
-        if tokens.getToken() == Token.NUMBER:
+        print(tokens.getToken())
+        if tokens.getToken() == Token.NUMBER.value:
             self._value = tokens.intVal()
             tokens.skipToken()
         else:
@@ -20,7 +21,7 @@ class Int:
     
     # Print this Int statement according to the BNF production.
     def printInt(self):
-        print(self._value)
+        print(self._value,end="")
     
     # Evaluate this Int statement by returning its numeric value.
     def evalInt(self):

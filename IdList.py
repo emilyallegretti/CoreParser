@@ -15,7 +15,7 @@ class IdList:
     def parseIdList(self, tokens: Scanner):
         self._id = Id.parseId(tokens)
         # if next token is a comma, then we are in second alternative
-        if tokens.getToken() == Token.COMMA:
+        if tokens.getToken() == Token.COMMA.value:
             tokens.skipToken()
             self._idList = IdList()
             self._idList.parseIdList(tokens)
@@ -24,8 +24,9 @@ class IdList:
     def declareIdList(self, tokens:Scanner):
         self._id = Id.declare(tokens)
         # check if we are in second alternative
-        if tokens.getToken() == Token.COMMA:
+        if tokens.getToken() == Token.COMMA.value:
             tokens.skipToken()
+            self._idList = IdList()
             self._idList.declareIdList(tokens)
     
     # Print this IdList statement according to the BNF production.

@@ -2,7 +2,6 @@
 from Comp import Comp
 from Error import printSyntaxError
 from Scanner import Scanner
-from Condition import Condition
 from Token import Token
 
 
@@ -16,36 +15,38 @@ class Condition:
     def parseCondition(self, tokens: Scanner):
         tok = tokens.getToken()
         # if current token is an open paren, we are in first alternate <comp>
-        if tok==Token.OPEN_PAREN:
+        if tok==Token.OPEN_PAREN.value:
             self._comp = Comp()
             self._comp.parseComp(tokens)
             self._altNo = 1
+            return
         # if current token is !, we are in second alternate !<comp>
-        elif tok ==Token.NOT:
+        elif tok == Token.NOT.value:
             tokens.skipToken()
             self._cond = Condition()
             self._cond.parseCondition(tokens)
             self._altNo = 2
+            return
         # if current token is open bracket, we are in third or fourth alternate
-        elif tok ==Token.OPEN_BRACKET:
+        elif tok == Token.OPEN_BRACKET.value:
             tokens.skipToken()
             # parse first condition 
             self._cond1 = Condition()
             self._cond1.parseCondition(tokens)
             # check if this is conjuction or disjunction
-            if tokens.getToken() == Token.AND:
+            if tokens.getToken() == Token.AND.value:
                 tokens.skipToken()
                 self._cond2 = Condition()
                 self._cond2.parseCondition(tokens)
-                if tokens.getToken() == Token.CLOSE_BRACKET:
+                if tokens.getToken() == Token.CLOSE_BRACKET.value:
                     self._altNo = 3
                     tokens.skipToken()
                     return
-            elif tokens.getToken() == Token.OR:
+            elif tokens.getToken() == Token.OR.value:
                 tokens.skipToken()
                 self._cond2 = Condition()
                 self._cond2.parseCondition(tokens)
-                if tokens.getToken() == Token.CLOSE_BRACKET:
+                if tokens.getToken() == Token.CLOSE_BRACKET.value:
                     self._altNo = 4
                     tokens.skipToken()
                     return

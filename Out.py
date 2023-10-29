@@ -2,6 +2,7 @@
 from Declaration import Declaration
 from Error import printRuntimeError, printSyntaxError
 from IdList import IdList
+from PrettyPrint import TAB, printSpaces
 from Scanner import Scanner
 from Token import Token
 
@@ -14,12 +15,12 @@ class Out:
     # Parse this Out statement according to the BNF production.
     def parseOut(self, tokens:Scanner):
         # make sure first token is write keyword
-        if tokens.getToken() == Token.WRITE:
+        if tokens.getToken() == Token.WRITE.value:
             tokens.skipToken()
             self._idList = IdList()
             self._idList.parseIdList(tokens)
             # make sure final token is a semicolon
-            if tokens.getToken()== Token.SEMICOLON:
+            if tokens.getToken() == Token.SEMICOLON.value:
                 tokens.skipToken()
             return
         printSyntaxError('write')
@@ -28,9 +29,12 @@ class Out:
 
     
     # Print this Out statement according to the BNF production.
-    def printOut(self):
+    def printOut(self,tabLevel):
+        # print out the necessary amount of spaces to reach the current tab level
+        printSpaces(tabLevel)
         print("write ", end="")
         self._idList.printIdList()
+        print(";",end="")
 
     
     # Execute this Out statement.

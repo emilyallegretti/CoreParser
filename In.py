@@ -1,6 +1,7 @@
 # Class corresponding to a In node in the abstract syntax tree.
 from Error import printRuntimeError, printSyntaxError
 from IdList import IdList
+from PrettyPrint import TAB, printSpaces
 from Token import Token
 from Scanner import Scanner
 
@@ -13,20 +14,23 @@ class In:
     # Parse this In statement according to the BNF production.
     def parseIn(self, tokens:Scanner):
         # make sure current token is a READ keyword
-        if tokens.getToken()==Token.READ:
+        if tokens.getToken() == Token.READ.value:
             tokens.skipToken()
             self._idList = IdList()
-            self._idList.parseIdList()
-            if tokens.getToken==Token.SEMICOLON:
+            self._idList.parseIdList(tokens)
+            if tokens.getToken() == Token.SEMICOLON.value:
                 tokens.skipToken()
                 return
         printSyntaxError("read")
         exit(1)
     
     # Print this In statement according to the BNF production.
-    def printIn(self):
+    def printIn(self,tabLevel):
+        # print out the necessary amount of spaces to reach the current tab level
+        printSpaces(tabLevel)
         print("read ", end="")
         self._idList.printIdList()
+        print(";")
     
     # Execute this In statement by reading in the next line from the data file. If READ is executed with no data to read from 
     # the file, print runtime error and exit

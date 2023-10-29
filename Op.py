@@ -4,7 +4,6 @@ from Id import Id
 from Int import Int
 from Scanner import Scanner
 from Token import Token
-from Expression import Expression
 
 class Op: 
     def __init__(self):
@@ -14,21 +13,22 @@ class Op:
     # Parse this Op statement according to the BNF production.
     def parseOp(self, tokens: Scanner):
         t = tokens.getToken()
-        if t== Token.NUMBER:
+        if t== Token.NUMBER.value:
             # if current token is an int, create new Int object with its value 
             self._int = Int()
-            self._int.parseInt()
+            self._int.parseInt(tokens)
             self._altNo  = 1
             return
-        elif t==Token.ID:
-            self._id = Id.parseId()
+        elif t == Token.ID.value:
+            self._id = Id.parseId(tokens)
             self._altNo = 2
             return
-        elif t==Token.OPEN_PAREN:
+        elif t == Token.OPEN_PAREN.value:
             tokens.skipToken()
+            from Expression import Expression
             self._exp = Expression()
-            self._exp.parseExpression()
-            if tokens.getToken() == Token.CLOSED_PAREN:
+            self._exp.parseExpression(tokens)
+            if tokens.getToken() == Token.CLOSE_PAREN.value:
                 tokens.skipToken()
                 self._altNo = 3
                 return

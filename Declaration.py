@@ -2,6 +2,7 @@
 from Error import printSyntaxError
 from Id import Id
 from IdList import IdList
+from PrettyPrint import printSpaces
 from Token import Token
 
 
@@ -18,19 +19,20 @@ class Declaration:
     # Parse this Declaration statement according to the BNF production.
     def parseDeclaration(self, tokens):
         # make sure current token is int keyword
-        if tokens.getToken() == Token.INT:
+        if tokens.getToken() == Token.INT.value:
             tokens.skipToken()
             self._idList = IdList()
             # initialize the variables declared here and abort with an error if a double declaration occurs. 
-            self._idList.declareIdList()
-            if tokens.getToken()==Token.SEMICOLON:
+            self._idList.declareIdList(tokens)
+            if tokens.getToken() == Token.SEMICOLON.value:
                 tokens.skipToken()
                 return
         printSyntaxError("declaration")
         exit(1)
     
     # Print this Declaration statement according to the BNF production.
-    def printDeclaration(self):
+    def printDeclaration(self, tabLevel):
+        printSpaces(tabLevel)
         print("int ", end="")
         self._idList.printIdList()
         print(";")

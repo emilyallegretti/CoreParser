@@ -16,15 +16,15 @@ class StatementSequence:
         self._stmt.parseStatement(tokens)
         # check if next token is the start of another Statement Sequence, this indicates we are in second alternative
         t = tokens.getToken()
-        if t == Token.ID or t==Token.IF or t==Token.WHILE or t==Token.READ or t==Token.WRITE:
+        if t == Token.ID.value or t==Token.IF.value or t==Token.WHILE.value or t==Token.READ.value or t==Token.WRITE.value:
             self._ss = StatementSequence()
-            self._ss.parseStatementSequence()
+            self._ss.parseStatementSequence(tokens)
     
     # Print this StatementSequence statement according to the BNF production.
-    def printStatementSequence(self):
-        self._stmt.printStatement()
+    def printStatementSequence(self, tabLevel):
+        self._stmt.printStatement(tabLevel)
         if self._ss:
-            self._ss.printStatementSequence()
+            self._ss.printStatementSequence(tabLevel)
 
     
     # Execute this StatementSequence statement.

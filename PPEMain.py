@@ -10,12 +10,15 @@ def main(args):
     # create root node of abstract parse tree corresponding to input program
     prog = Program()
     # first parse the input program
+    print("------------------PARSING PROGRAM---------------------")
     prog.parseProgram(tokens)
     # then pretty-print it
+    print("------------------PRINTING PROGRAM---------------------")
     prog.printProgram()
     # finally, execute the program
     # first, open the data file as a static variable of the In class
     In.openDataFile(args[2])     # second command-line argument is the name of the data file to read from
+    print("------------------EXECUTING PROGRAM---------------------")
     prog.execProgram()
 
 main(sys.argv)

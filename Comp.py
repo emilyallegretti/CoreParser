@@ -16,18 +16,18 @@ class Comp:
     # Parse this Comp statement according to the BNF production.
     def parseComp(self, tokens: Scanner):
         # make sure first token is (
-        if tokens.getToken() == Token.OPEN_PAREN:
+        if tokens.getToken() == Token.OPEN_PAREN.value:
             tokens.skipToken()  # go to next token which should be an Op node
             self._op1 = Op()
             self._op1.parseOp(tokens)
             # next token should be CompOp node
             self._compOp = CompOp()
-            self.compOp.parseCompOp(tokens)
+            self._compOp.parseCompOp(tokens)
             # next token should be Op node
             self._op2= Op()
-            self._op2.parseOp()
+            self._op2.parseOp(tokens)
             # check last token is )
-            if tokens.getToken() == Token.CLOSE_PAREN:
+            if tokens.getToken() == Token.CLOSE_PAREN.value:
                 tokens.skipToken()      # move cursor beyond end of statement
                 return
         # if we reach this point in the code, we have a syntax error
@@ -37,13 +37,13 @@ class Comp:
     
     # Print this Comp statement according to the BNF production.
     def printComp(self):
-        print("("); 
+        print("(",end=""); 
         self._op1.printOp(); 
-        print(" ")
+        print(" ",end="")
         self._compOp.printCompOp(); 
-        print(" ")
+        print(" ",end="")
         self._op2.printOp()
-        print(")\n")
+        print(") ", end="")
     
     # Exthis Comp statement.
     def evalComp(self):
