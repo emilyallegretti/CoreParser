@@ -38,7 +38,7 @@ class Assign:
     
     # Execute this Assign statement.
     def evalAssign(self):
-        result = self._exp.evalExpression
+        result = self._exp.evalExpression()
         # associate this Id node with the result of the assignment statement
         self._id.setIdVal(result)
         

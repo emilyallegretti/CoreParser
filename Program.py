@@ -41,8 +41,7 @@ class Program:
     
     # Execute this Program statement.
     def execProgram(self):
-        # first execute the declaration sequence node to create an internal list of all declared variables
-       # self._ds.executeDeclarationSequence()
-        # then execute the statement sequence that follows
+       # no need to 'execute' the declaration sequence, since variable declaration was handled during parsing
+        # execute the statement sequence that follows, passing the data file along
         self._ss.executeStatementSequence()
         

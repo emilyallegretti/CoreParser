@@ -22,6 +22,7 @@ class Id:
             if Id.isDeclared(tokName):
                 for id in Id.declaredVars:
                     if id.name == tokName:
+                        tokens.skipToken()
                         return id
             printUndeclaredError(tokName)
             exit(1)
@@ -45,6 +46,7 @@ class Id:
             else:
                 id = Id(tokName)
                 Id.declaredVars.append(id)
+                tokens.skipToken()
                 return id
         printSyntaxError("identifier")
             

@@ -1,3 +1,5 @@
+import sys
+from In import In
 from Program import Program
 from Scanner import Scanner
 
@@ -11,11 +13,9 @@ def main(args):
     prog.parseProgram(tokens)
     # then pretty-print it
     prog.printProgram()
-    # finally, execute the program using the second CL arg, which is the data file
-    try:
-        data = open(args[2], 'r')
-    except FileNotFoundError as e:
-        print(f"{e}.\nAborting program...")
-        exit(1)
-#TODO: should data file also be a global variable among all print methods?
-    prog.execProgram(data)
+    # finally, execute the program
+    # first, open the data file as a static variable of the In class
+    In.openDataFile(args[2])     # second command-line argument is the name of the data file to read from
+    prog.execProgram()
+
+main(sys.argv)

@@ -18,6 +18,9 @@ class Out:
             tokens.skipToken()
             self._idList = IdList()
             self._idList.parseIdList(tokens)
+            # make sure final token is a semicolon
+            if tokens.getToken()== Token.SEMICOLON:
+                tokens.skipToken()
             return
         printSyntaxError('write')
         exit(1)
@@ -33,7 +36,6 @@ class Out:
     # Execute this Out statement.
     def execOut(self):
         # get the list of Id strings in idList and print each one out
-        # if the variable has not been initialized, print an error and quit 
         vars = self._idList.evalIdList()
         for var in vars:
-            print(var.evalId())
+            print(f"{var.name} = {var.evalId()}")
