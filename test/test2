@@ -1,9 +1,9 @@
 program int ABC, D;
 
-          begin read ABC; read D;
+          begin read D; read D;
 
                while (ABC != D) loop
-                                     if (ABC > D) then ABC = ABC - D;
+                                     if (ABC > D) then D = ABC - D;
 
                                      else D = D - ABC;
 
@@ -11,6 +11,6 @@ program int ABC, D;
 
                             end;
 
-               write D;
+               write ABC;
 
           end

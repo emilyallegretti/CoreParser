@@ -11,7 +11,6 @@ class Int:
     # Parse this Int statement by .
     def parseInt(self, tokens: Scanner):
         # make sure current token is an int
-        print(tokens.getToken())
         if tokens.getToken() == Token.NUMBER.value:
             self._value = tokens.intVal()
             tokens.skipToken()

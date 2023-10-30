@@ -19,8 +19,9 @@ class Id:
         # make sure current token is an Id, else we have a syntax error
         if tokens.getToken() == Token.ID.value:
             tokName = tokens.idName()
+            # make sure id was declared in declaration sequence
             if Id.isDeclared(tokName):
-                for id in Id.declaredVars:
+                for id in Id.declaredVars:  # then search for the current token value in declaredVars
                     if id.name == tokName:
                         tokens.skipToken()
                         return id
@@ -62,6 +63,7 @@ class Id:
     def evalId(self):
         if self.value == None:
             printRuntimeError(f"{self.name} has not been initialized")
+            exit(1)
         else: 
             return self.value
         
