@@ -20,5 +20,7 @@ def main(args):
     In.openDataFile(args[2])     # second command-line argument is the name of the data file to read from
     print("------------------EXECUTING PROGRAM---------------------")
     prog.execProgram()
+    # close data file
+    In.closeDataFile()
 
 main(sys.argv)

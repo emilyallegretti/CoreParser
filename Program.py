@@ -39,7 +39,7 @@ class Program:
         print(f"{TAB}begin")
         tabLevel += 1     # set tab level that statement seq will be at
         self._ss.printStatementSequence(tabLevel)
-        print("\nend")
+        print("end")
 
     
     # Execute this Program statement.

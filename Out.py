@@ -34,7 +34,7 @@ class Out:
         printSpaces(tabLevel)
         print("write ", end="")
         self._idList.printIdList()
-        print(";",end="")
+        print(";")
 
     
     # Execute this Out statement.

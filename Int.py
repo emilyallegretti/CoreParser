@@ -8,7 +8,7 @@ class Int:
     def __init__(self):
         self._value = None
     
-    # Parse this Int statement by .
+    # Parse this Int statement by getting its numeric value and making it a property of this instance.
     def parseInt(self, tokens: Scanner):
         # make sure current token is an int
         if tokens.getToken() == Token.NUMBER.value:

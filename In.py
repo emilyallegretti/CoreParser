@@ -55,3 +55,12 @@ class In:
         except FileNotFoundError as e:
             print(f"{e}.\nAborting program...")
             exit(1)
+    
+    @staticmethod
+    def closeDataFile():
+        try: 
+            In.data.close()
+        except Exception as e:
+            print(f"{e}.\nAborting program...")
+            exit(1)
+
